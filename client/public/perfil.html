@@ -13,12 +13,72 @@
 
     <body>
 
-        <header>
-            
-        </header>
+        <header class="absolute w-screen px-4 md:px-12 2xl:px-20 top-8 flex justify-between">
+            <!-- Logo -->
+            <div>
+                <h3 class="text-lg xl:text-3xl font-bold"> AFEB </h3>
+            </div>
+
+            <!-- Navbar -->
+            <nav>
+                <ul class="flex justify-around gap-2 md:gap-8 pt-1 xl:pt-2 md:text-base text-sm">
+                    <a href="ranking.html"> <li class="nav-li"> Ranking </li> </a>
+                    <a href="torneios.html"> <li class="nav-li"> Torneios </li> </a>
+                    <a href="sobre-nos.html"> <li class="nav-li"> Sobre nós </li> </a>
+                    <a href="login.html"> <li class="btn-entrar"> Entrar </li> </a>
+                </ul>
+            </nav>
+        </header> 
 
         <main>
+            <div id="bg-perfil"> </div>
 
+            <section id="dados-jogador" class="mx-[10vw]">
+                <div class="img-perfil-container">
+                    <img src="" alt="" id="jogador-template-img">
+                </div>
+
+                <div id="dados-pessoais-container">
+                    <h2 id="username-perfil-jogador" class="text-lg md:text-2xl">
+                        Nome do jogador
+                    </h2>
+
+                    <p id="apelido-perfil-jogador" class="text-gray-800 font-light text-lg md:text-2xl">
+                        (Apelido)
+                    </p>
+
+                    <div id="titulo-perfil-jogador-container">
+                        <h3 id="titulo-jogador"> MNB </h3>
+                    </div>
+                </div>
+
+                <div id="linha-perfil"></div>
+
+                <div id="informacoes-jogador-container">
+                    <p id="informacoes-jogador">
+                        Informações do jogador.
+                    </p>
+                </div>
+
+                <div class="flex justify-between">
+                    <div id="premiacoes-jogador">
+                        <h3 class="font-bolf text-lg md:text-2xl font-bold"> Premiações: </h3>
+                    </div>
+
+                    <div class="flex justify-center gap-12 w-[40vw] border-l">
+                        <div class="rating-square" id="rating-rapido-container"> 
+                            <h4> Rating Rápido </h4>
+
+                            <p id="rating-rapido-p"> 2000 </p>
+                        </div>
+                        <div class="rating-square" id="rating-blitz-container">
+                            <h4> Rating Blitz </h4>
+
+                            <p id="rating-blitz-p"> 2000 </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
         
     </body>

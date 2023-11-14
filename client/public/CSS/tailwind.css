@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-entrar {
+    @apply bg-black font-bold text-white px-3 md:px-6 py-2 mt-[-0.5rem] rounded-lg;
+}
+
+.nav-li {
+    @apply hover:underline
+}
+
+#noticias-section {
+    @apply px-16 mt-[5vh] md:w-[60%];
+}
+
+.noticia-container {
+    @apply border-gray-200 border-t py-4;
+}
+
+.header-noticia {
+    @apply pb-2
+}
+
+.titulo-noticia {
+    @apply font-bold md:text-2xl xl:text-3xl pb-4;
+}
+
+.corpo-noticia {
+    @apply pb-12
+}
+
+#bg-perfil {
+    @apply w-screen h-[20vh];
+    background: linear-gradient(to right, #C5F29F, #538D22);
+}
+
+.img-perfil-container {
+    @apply absolute rounded-full bg-white h-32 w-32 top-[13vh] shadow-lg;
+}
+
+#dados-pessoais-container {
+    @apply flex gap-10 pt-28;
+}
+
+#titulo-perfil-jogador-container {
+    @apply flex justify-center rounded-full border border-gray-400 font-bold bg-[#C5F29F] px-4 py-2;
+}
+
+#linha-perfil {
+    @apply border-t border-gray-200 mt-12;
+}
+
+#informacoes-jogador-container {
+    @apply border border-gray-200 mt-8 mb-16 p-8 rounded-lg;
+}
+
+.rating-square {
+    @apply bg-[#C5F29F] h-60 w-60 text-center pt-12 rounded-3xl shadow-md;
+}
+
+.rating-square h4 {
+    @apply text-xl;
+}
+
+.rating-square p {
+    @apply text-xl md:text-4xl pt-8;
+}
+
+.premiacao-container {
+
+}
