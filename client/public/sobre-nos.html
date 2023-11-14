@@ -13,35 +13,55 @@
 
     <body>
 
-        <header>
-            
+        <header class="absolute w-screen px-4 md:px-12 2xl:px-20 top-8 flex justify-between">
+            <!-- Logo -->
+            <a href="index.html#">
+                <h3 class="text-lg xl:text-3xl font-bold"> AFEB </h3>
+            </a>
+
+            <!-- Navbar -->
+            <nav>
+                <ul class="flex justify-around gap-2 md:gap-8 pt-1 xl:pt-2 md:text-base text-sm">
+                    <a href="ranking.html"> <li class="nav-li"> Ranking </li> </a>
+                    <a href="torneios.html"> <li class="nav-li"> Torneios </li> </a>
+                    <a href="sobre-nos.html"> <li class="nav-li"> Sobre nós </li> </a>
+                    <a href="login.html"> <li class="btn-entrar"> Entrar </li> </a>
+                </ul>
+            </nav>
         </header>
 
-        <main>
-            <h2> Quem somos nós? </h2>
+        <main class="mt-[20vh] px-[6vw] md:flex gap-20">
+            <div class="md:w-[60%]">
+                <h2 class="text-xl md:text-2xl 2xl:text-5xl font-bold"> Quem somos nós? </h2>
 
-            <p>
-                A Associação Federativa de Enxadristas da Biblioteca, (por razões legais, fica aqui informado que 
-                a AFEB não é, ou tem vínculos com qualquer federação), ou AFEB, é uma associação de alunos e ex-alunos
-                do Colégio Bento Quirino, que se reúnem para jogar xadrez, de forma presencial no colégio, ou de forma
-                online. <br> <br>
+                <p class="py-8">
+                    A Associação Federativa de Enxadristas da Biblioteca, (por razões legais, fica aqui informado que 
+                    a AFEB não é, ou tem vínculos com qualquer federação), ou AFEB, é uma associação de alunos e ex-alunos
+                    do Colégio Bento Quirino, que se reúnem para jogar xadrez, de forma presencial no colégio, ou de forma
+                    online. <br> <br>
 
-                Formada em 2023, a AFEB já reuniu dezenas de alunos em torneios presenciais, e participou em diversos
-                torneios regionais de xadrez conquistando medalhas de diferentes modalidades em diversas cidades do 
-                estado. Nosso objetivo é continuar fomentando o jogo de xadrez na região, e principalmente no colégio,
-                com diversos torneios internos, e até mesmo um sistema de rating e titulação próprio.
-            </p>
+                    Formada em 2023, a AFEB já reuniu dezenas de alunos em torneios presenciais, e participou em diversos
+                    torneios regionais de xadrez conquistando medalhas de diferentes modalidades em diversas cidades do 
+                    estado. Nosso objetivo é continuar fomentando o jogo de xadrez na região, e principalmente no colégio,
+                    com diversos torneios internos, e até mesmo um sistema de rating e titulação próprio.
+                </p>
+            </div>
 
-            <h2> Como fazer parte da AFEB? </h2>
+            <div class="md:w-[40%]">
+                <h3 class="text-lg md:text-xl 2xl:text-3xl font-bold"> Como fazer parte da AFEB? </h3>
 
-            <p>
-                A AFEB permite que qualquer um que já foi parte do colégio se cadastre na associação, independente do ano.
-                <br> <br>
+                <div class="pt-12">
+                    <p class="rounded-lg bg-slate-800 text-white shadow-lg py-6 px-8">
+                        A AFEB permite que qualquer um que já foi parte do colégio se cadastre na associação, independente do ano.
+                    </p>
 
-                Caso você seja um aluno, ou mesmo professor da escola, e tenha interesse em fazer parte. Entre em contato
-                com um de nossos membros na biblioteca da escola nos intervalos. Ou então, nos contate via email, por meio
-                do email: nãotemainda@gmail.com
-            </p>
+                    <p class="rounded-lg bg-slate-900 text-white shadow-lg py-6 px-8 mt-6">
+                        Caso você seja um aluno, ou mesmo professor da escola, e tenha interesse em fazer parte. Entre em contato
+                        com um de nossos membros na biblioteca da escola nos intervalos. Ou então, 
+                        <a href="https://lichess.org/team/afeb" class="text-blue-700 underline">nos contate pelo lichess.</a>
+                    </p>
+                </div>
+            </div>
         </main>
         
     </body>

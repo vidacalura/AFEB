@@ -36,7 +36,11 @@
 }
 
 .img-perfil-container {
-    @apply absolute rounded-full bg-white h-32 w-32 top-[13vh] shadow-lg;
+    @apply absolute flex rounded-full bg-white h-32 w-32 top-[13vh] shadow-lg justify-center;
+}
+
+.img-perfil-container img {
+    @apply w-20 h-20 mt-6;
 }
 
 #dados-pessoais-container {
@@ -67,6 +71,27 @@
     @apply text-xl md:text-4xl pt-8;
 }
 
-.premiacao-container {
+.trofeu-div {
+    @apply border border-gray-200 text-lg rounded-lg w-full py-4 px-8 mt-4;
+}
 
+#legenda-tabela {
+    @apply flex justify-between border rounded-xl text-gray-400 font-bold py-3 px-20 mt-16 mb-8;
+}
+
+.ranking-jogador-div {
+    @apply flex justify-between border-b hover:bg-gray-100 rounded-xl 2xl:text-lg font-bold py-4 px-20;
+}
+
+#legenda-tabela div,
+.ranking-jogador-div div {
+    @apply flex justify-center gap-20;
+}
+
+#tabela-ranking {
+    @apply border rounded-xl;
+}
+
+.ranking-jogador-rating-div {
+    @apply flex pr-6;
 }
