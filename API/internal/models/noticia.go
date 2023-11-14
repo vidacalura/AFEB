@@ -22,7 +22,7 @@ func (n Noticia) IsValid() (bool, string) {
 		return false, "Código de notícia inválido."
 	}
 
-	if len(n.CodAutor) < 16 || len(n.CodAutor) > 36 {
+	if len(n.CodAutor) != 16 {
 		return false, "Código de autor inválido."
 	}
 
@@ -40,6 +40,7 @@ func (n Noticia) IsValid() (bool, string) {
 // Retorna um feed com as 6 últimas notícias
 func (f *Feed) GetFeed() (int, string) {
 	selectFeed := "SELECT * FROM Noticias ORDER BY data_publicacao DESC LIMIT 6;"
+	// TODO: Retornar também nome do autor
 	rows, err := E.DB.Query(selectFeed)
 	if err != nil {
 		log.Println(err)
@@ -74,6 +75,7 @@ func (f *Feed) GetFeed() (int, string) {
 // Recebe uma notícia especificada pelo seu código
 func (n *Noticia) GetNoticia(codNotc string) (int, string) {
 	selectNotc := "SELECT * FROM Noticias WHERE cod_notc = ?;"
+	// TODO: Retornar também nome do autor
 	row := E.DB.QueryRow(selectNotc, codNotc)
 
 	err := row.Scan(&n.CodNotc, &n.CodAutor, &n.Titulo, &n.Noticia,

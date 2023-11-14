@@ -9,7 +9,7 @@ type Usuario struct {
 
 // Valida uma instância de Usuario
 func (u Usuario) IsValid() (bool, string) {
-	if len(u.CodUsu) < 16 || len(u.CodUsu) > 36 {
+	if u.CodUsu == "" || len(u.CodUsu) > 16 {
 		return false, "Código de usuário inválido."
 	}
 

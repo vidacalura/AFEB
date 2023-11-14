@@ -16,6 +16,7 @@ type Jogador struct {
 	EloRapid       null.Int    `json:"eloRapid"`
 	EloBlitz       null.Int    `json:"eloBlitz"`
 	DataNascimento string      `json:"dataNascimento"`
+	Trofeus        Trofeus     `json:"trofeus"`
 }
 
 type RankingJogadores []Jogador
@@ -116,7 +117,9 @@ func (j *Jogador) GetJogador(codJog string) (int, string) {
 		return http.StatusNotFound, "Jogador não encontrado."
 	}
 
-	return http.StatusOK, ""
+	statusCode, msgErro := j.Trofeus.GetTrofeusJogador(j.CodJog)
+
+	return statusCode, msgErro
 }
 
 // Salva um jogador novo no banco de dados
