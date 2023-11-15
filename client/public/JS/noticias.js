@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:4000/api";
+const API = "https://afeb-api.onrender.com/api";
 
 fetchNoticias()
 .then((noticias) => {
@@ -83,7 +83,6 @@ function formatarDataPublicacao(dataPublicacao) {
 
     const dia = dataPublicacao[2][0];
     const mes = mesesMap.get(dataPublicacao[1]);
-    console.log(dataPublicacao)
 
     return `${dia} de ${mes}`;
 }

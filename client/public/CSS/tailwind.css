@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    @apply overflow-x-hidden mb-12;
+}
+
 .btn-entrar {
     @apply bg-black font-bold text-white px-3 md:px-6 py-2 mt-[-0.5rem] rounded-lg;
 }
@@ -44,7 +48,7 @@
 }
 
 #dados-pessoais-container {
-    @apply flex gap-10 pt-28;
+    @apply flex md:gap-10 gap-3 pt-28;
 }
 
 #titulo-perfil-jogador-container {
@@ -60,7 +64,7 @@
 }
 
 .rating-square {
-    @apply bg-[#C5F29F] h-60 w-60 text-center pt-12 rounded-3xl shadow-md;
+    @apply bg-[#C5F29F] h-48 md:h-60 w-48 md:w-60 text-center pt-12 rounded-3xl shadow-md;
 }
 
 .rating-square h4 {
@@ -76,16 +80,20 @@
 }
 
 #legenda-tabela {
-    @apply flex justify-between border rounded-xl text-gray-400 font-bold py-3 px-20 mt-16 mb-8;
+    @apply flex justify-between border rounded-xl text-gray-400 font-bold text-xs md:text-base py-3 px-8 md:px-20 mt-16 mb-8;
 }
 
 .ranking-jogador-div {
-    @apply flex justify-between border-b hover:bg-gray-100 rounded-xl 2xl:text-lg font-bold py-4 px-20;
+    @apply flex justify-between border-b hover:bg-gray-100 rounded-xl text-xs md:text-base 2xl:text-lg font-bold py-4 px-8 md:px-20;
 }
 
 #legenda-tabela div,
 .ranking-jogador-div div {
-    @apply flex justify-center gap-20;
+    @apply flex justify-center gap-2 md:gap-20;
+}
+
+.rating-rapido {
+    @apply pr-4 md:pr-8 xl:pr-16;
 }
 
 #tabela-ranking {

@@ -1,8 +1,7 @@
-const API = "http://127.0.0.1:4000/api";
+const API = "https://afeb-api.onrender.com/api";
 
 fetchRanking()
 .then((ranking) => {
-    console.log(ranking)
     if (ranking)
         mostrarRanking(ranking);
 })
@@ -56,7 +55,7 @@ function mostrarRanking(ranking) {
             </div>
 
             <div class="ranking-jogador-rating-div">
-                <p class="pr-16"> ${(!j.eloRapid ? "Sem" : j.eloRapid)} </p>
+                <p class="rating-rapido"> ${(!j.eloRapid ? "Sem" : j.eloRapid)} </p>
                 <p> ${(!j.eloBlitz ? "Sem" : j.eloBlitz)} </p>
             </div>
         `;

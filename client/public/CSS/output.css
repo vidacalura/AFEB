@@ -550,14 +550,14 @@ video {
   top: 2rem;
 }
 
-.mx-\[10vw\] {
-  margin-left: 10vw;
-  margin-right: 10vw;
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
-.mx-\[20vw\] {
-  margin-left: 20vw;
-  margin-right: 20vw;
+.mx-\[8vw\] {
+  margin-left: 8vw;
+  margin-right: 8vw;
 }
 
 .mb-8 {
@@ -578,6 +578,10 @@ video {
 
 .mt-\[25vh\] {
   margin-top: 25vh;
+}
+
+.block {
+  display: block;
 }
 
 .flex {
@@ -608,16 +612,16 @@ video {
   justify-content: space-around;
 }
 
-.gap-12 {
-  gap: 3rem;
-}
-
 .gap-2 {
   gap: 0.5rem;
 }
 
 .gap-20 {
   gap: 5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .rounded-lg {
@@ -688,6 +692,11 @@ video {
   text-align: center;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -703,12 +712,21 @@ video {
   line-height: 1.75rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
 
 .font-light {
   font-weight: 300;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .text-blue-700 {
@@ -739,6 +757,11 @@ video {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+body {
+  margin-bottom: 3rem;
+  overflow-x: hidden;
 }
 
 .btn-entrar {
@@ -842,8 +865,14 @@ video {
 
 #dados-pessoais-container {
   display: flex;
-  gap: 2.5rem;
+  gap: 0.75rem;
   padding-top: 7rem;
+}
+
+@media (min-width: 768px) {
+  #dados-pessoais-container {
+    gap: 2.5rem;
+  }
 }
 
 #titulo-perfil-jogador-container {
@@ -880,8 +909,8 @@ video {
 }
 
 .rating-square {
-  height: 15rem;
-  width: 15rem;
+  height: 12rem;
+  width: 12rem;
   border-radius: 1.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(197 242 159 / var(--tw-bg-opacity));
@@ -890,6 +919,13 @@ video {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 768px) {
+  .rating-square {
+    height: 15rem;
+    width: 15rem;
+  }
 }
 
 .rating-square h4 {
@@ -934,11 +970,22 @@ video {
   border-width: 1px;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  #legenda-tabela {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
 
 .ranking-jogador-div {
@@ -948,14 +995,25 @@ video {
   border-bottom-width: 1px;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
   font-weight: 700;
 }
 
 .ranking-jogador-div:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+@media (min-width: 768px) {
+  .ranking-jogador-div {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
 
 @media (min-width: 1536px) {
@@ -969,7 +1027,30 @@ video {
 .ranking-jogador-div div {
   display: flex;
   justify-content: center;
-  gap: 5rem;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  #legenda-tabela div,
+.ranking-jogador-div div {
+    gap: 5rem;
+  }
+}
+
+.rating-rapido {
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .rating-rapido {
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .rating-rapido {
+    padding-right: 4rem;
+  }
 }
 
 #tabela-ranking {
@@ -983,6 +1064,16 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:mx-\[10vw\] {
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+
+  .md\:mx-\[20vw\] {
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+
   .md\:mt-0 {
     margin-top: 0px;
   }
@@ -1011,6 +1102,10 @@ video {
     width: 60%;
   }
 
+  .md\:gap-12 {
+    gap: 3rem;
+  }
+
   .md\:gap-8 {
     gap: 2rem;
   }
@@ -1025,14 +1120,13 @@ video {
     padding-right: 3rem;
   }
 
+  .md\:pt-0 {
+    padding-top: 0px;
+  }
+
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
-  }
-
-  .md\:text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
   }
 
   .md\:text-base {

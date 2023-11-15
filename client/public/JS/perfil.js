@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:4000/api";
+const API = "https://afeb-api.onrender.com/api";
 
 const codJog = new URL(window.location.href).searchParams.get("codJog");
 
