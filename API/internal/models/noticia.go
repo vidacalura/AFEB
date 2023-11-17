@@ -109,7 +109,7 @@ func (n Noticia) CriarNoticia() (int, string) {
 // Edita o título e/ou corpo de uma notícia
 func (n Noticia) EditarNoticia() (int, string) {
 	update := `
-		UPDATE Noticias SET titulo = ?, SET noticia = ? WHERE cod_notc = ?;`
+		UPDATE Noticias SET titulo = ?, noticia = ? WHERE cod_notc = ?;`
 
 	_, err := E.DB.Exec(update, n.Titulo, n.Noticia, n.CodNotc)
 	if err != nil {

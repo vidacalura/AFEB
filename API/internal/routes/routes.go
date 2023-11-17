@@ -46,7 +46,11 @@ func NewRouter() *gin.Engine {
 
 	torn := r.Group("/api/torneios")
 	{
-		torn.GET("")
+		torn.GET("/", services.MostrarTodosTorneios)
+		torn.GET("/:codTorn", services.MostrarTorneio)
+		torn.POST("/", services.CriarTorneio)
+		torn.PUT("/", services.EditarTorneio)
+		torn.DELETE("/:codTorn", services.ExcluirTorneio)
 	}
 
 	trof := r.Group("/api/trofeus")
