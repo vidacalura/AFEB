@@ -1,4 +1,6 @@
-//Ver certinho a senha que você está colocando la no login
+/**
+ * Permite o usuário visualizar sua senha na textbox de login.
+ */
 function verCertinho() {
     var passwordInput = document.getElementById('password');
     var passwordIcon = document.querySelector('.icon-right');
