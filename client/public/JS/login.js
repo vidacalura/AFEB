@@ -1,8 +1,8 @@
 //Ver certinho a senha que você está colocando la no login
-function VerCertinho() {
+function verCertinho() {
     var passwordInput = document.getElementById('password');
     var passwordIcon = document.querySelector('.icon-right');
-    
+
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
         passwordIcon.classList.remove('fa-eye');
