@@ -149,6 +149,7 @@ func (j Jogador) EditarJogador() (int, string) {
 	_, err := E.DB.Exec(update, j.Nome, j.Apelido, j.TituloAFEB, j.Info,
 		j.EloRapid, j.EloBlitz, j.DataNascimento, j.CodJog)
 	if err != nil {
+		log.Println(err)
 		return http.StatusInternalServerError,
 			"Erro ao editar jogador. Informe o erro a um mantenedor do " +
 				"projeto ou abra uma issue em nosso github."

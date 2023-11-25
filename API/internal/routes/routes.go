@@ -55,7 +55,11 @@ func NewRouter() *gin.Engine {
 
 	trof := r.Group("/api/trofeus")
 	{
-		trof.GET("")
+		trof.GET("/jogador/:codJog", services.MostrarTrofeusJogador)
+		trof.GET("/:codTrof", services.MostrarDadosTrofeu)
+		trof.POST("/", services.CriarTrofeu)
+		trof.PUT("/", services.EditarTrofeu)
+		trof.DELETE("/:codTrof", services.ExcluirTrofeu)
 	}
 
 	//usu := r.Group("/api/usuarios") {}
