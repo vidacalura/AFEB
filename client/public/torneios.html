@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="CSS/output.css">
+        <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
         <title> AFEB - Torneios AFEB </title>
 
     </head>
@@ -13,9 +14,22 @@
 
     <body>
 
-        <header>
-            
-        </header>
+        <header class="absolute w-screen px-4 md:px-12 2xl:px-20 top-8 flex justify-between">
+            <!-- Logo -->
+            <a href="index.html#">
+                <img src="imgs/AFEB_branco.png" alt="Logo da AFEB" class="logo">
+            </a>
+
+            <!-- Navbar -->
+            <nav>
+                <ul class="flex justify-around gap-2 md:gap-8 pt-2 xl:pt-4 md:text-base text-xs">
+                    <a href="ranking.html"> <li class="nav-li"> Ranking </li> </a>
+                    <a href="torneios.html"> <li class="nav-li"> Torneios </li> </a>
+                    <a href="sobre-nos.html"> <li class="nav-li"> Sobre nós </li> </a>
+                    <a href="login.html"> <li class="btn-entrar"> Entrar </li> </a>
+                </ul>
+            </nav>
+        </header> 
 
         <main>
 
