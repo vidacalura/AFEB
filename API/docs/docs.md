@@ -1,8 +1,275 @@
-# AFEB API
+## AFEB API
 
 Esta é a API oficial do website da AFEB. Aqui você encontra todos os endpoints
 do sistema para colaborar no desenvolvimento deste projeto, ou então conectar-se
 a ele para a criação de um projeto seu.
 
-## Sumário
+Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.com/</a>
 
+# Endpoints
+
+* [/api/jogadores](#apijogadores)
+
+## /api/jogadores
+
+<details>
+  <summary> <code>GET</code> <code>/api/jogadores/ranking</code> </summary>
+
+  #### Descrição
+
+  Retorna um ranking com o Top 10 jogadores mais bem rankeados da AFEB.
+
+  #### Parâmetros
+
+  > Nenhum
+
+  #### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  #### Response
+  ```js
+  {
+    "ranking": []object,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Ranking encontrado com sucesso!",
+    "ranking": [
+      {
+        "codJog": 1,
+        "nome": "Lucas Guedes",
+        "apelido": "Guedes",
+        "tituloAFEB": "MNB",
+        "info": "Fundador da AFEB.",
+        "eloRapid": 3200,
+        "eloBlitz": 3400,
+        "dataNascimento": "2005-09-02",
+        "trofeus": null
+      },
+      {
+        "codJog": 2,
+        "nome": "Bye",
+        "apelido": null,
+        "tituloAFEB": "GMB",
+        "info": "O bye",
+        "eloRapid": 9999,
+        "eloBlitz": 9999,
+        "dataNascimento": "0000-01-01",
+        "trofeus": null
+      }
+    ]
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>GET</code> <code>/api/jogadores/${codJog}</code> </summary>
+
+  #### Descrição
+
+  Retorna os dados de um jogador, juntamente de suas premiações na AFEB.
+
+  #### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | codJog    |  required | string      | Código do jogador a ser buscado.                                 |
+
+  #### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  #### Response
+  ```js
+  {
+    "jogador": object,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "jogador": {
+      "codJog": 2,
+      "nome": "Bye",
+      "apelido": null,
+      "tituloAFEB": "GMB",
+      "info": "O bye",
+      "eloRapid": 9999,
+      "eloBlitz": 9999,
+      "dataNascimento": "0000-01-01",
+      "trofeus": [
+        {
+          "codTrof": 0,
+          "codJog": 0,
+          "codTorn": 0,
+          "torneio": "1º Campeonato Mundial da FIDE",
+          "posicao": 1
+        }
+      ]
+    },
+    "message": "Jogador encontrado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>POST</code> <code>/api/jogadores</code> </summary>
+
+  #### Descrição
+
+  Registra um novo jogador no sistema
+
+  #### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 201 | `CREATED` |
+  | 400 | `BAD REQUEST` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  #### Request body
+  ```js
+  {
+    "nome": string,
+    "apelido": string || null,
+    "tituloAFEB": string || null,
+    "info": string || null,
+    "eloRapid": Number || null,
+    "eloBlitz": Number || null,
+    "dataNascimento": string
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "nome": "Bye",
+    "apelido": "Ciao",
+    "tituloAFEB": "GMB",
+    "info": "O bye.",
+    "eloRapid": 9999,
+    "eloBlitz": 9999,
+    "dataNascimento": "1287-01-01"
+  }
+  ```
+
+  #### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Jogador registrado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>PUT</code> <code>/api/jogadores</code> </summary>
+
+  #### Descrição
+
+  Atualiza os dados de um jogador no sistema
+
+  #### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  #### Request body
+  ```js
+  {
+    "codJog": Number,
+    "nome": string,
+    "apelido": string || null,
+    "tituloAFEB": string || null,
+    "info": string || null,
+    "eloRapid": Number || null,
+    "eloBlitz": Number || null,
+    "dataNascimento": string
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "codJog": 0,
+    "nome": "Bye",
+    "apelido": "Ciao",
+    "tituloAFEB": "GMB",
+    "info": "O bye.",
+    "eloRapid": 9999,
+    "eloBlitz": 9999,
+    "dataNascimento": "1287-01-01"
+  }
+  ```
+
+  #### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Jogador atualizado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>DELETE</code> <code>/api/jogadores/${codJog}</code> </summary>
+
+  #### Descrição
+
+  Exclui um jogador permanentemente do sistema.
+
+  #### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | codJog    |  required | string      | Código do jogador a ser excluído.                                |
+
+  #### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Jogador excluído com sucesso!"
+  }
+  ```
+</details>
