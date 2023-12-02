@@ -39,7 +39,7 @@ func (t Trofeu) IsValid() (bool, string) {
 // Retorna os troféus de um jogador específico
 func (t *Trofeus) GetTrofeusJogador(codJog int) (int, string) {
 	selectTrof := `
-		SELECT Torneios.titulo, Trofeus.posicao
+		SELECT Torneios.titulo, Trofeus.*
 		FROM Trofeus
 		INNER JOIN Torneios
 		ON Trofeus.cod_torn = Torneios.cod_torn
@@ -55,7 +55,8 @@ func (t *Trofeus) GetTrofeusJogador(codJog int) (int, string) {
 
 	for rows.Next() {
 		var trof Trofeu
-		err := rows.Scan(&trof.Torneio, &trof.Posicao)
+		err := rows.Scan(&trof.Torneio, &trof.CodTrof, &trof.CodJog,
+			&trof.CodTorn, &trof.Posicao)
 		if err != nil {
 			log.Println(err)
 			return http.StatusInternalServerError,

@@ -9,6 +9,10 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
 # Endpoints
 
 * [/api/jogadores](#apijogadores)
+* [/api/noticias](#apinoticias)
+* [/api/torneios](#apitorneios)
+* [/api/trofeus](#apitrofeus)
+* [/api/usuarios](#apiusuarios)
 
 ## /api/jogadores
 
@@ -522,3 +526,506 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
   }
   ```
 </details>
+
+## /api/torneios
+
+<details>
+  <summary> <code>GET</code> <code>/api/torneios</code> </summary>
+
+  ### Descrição
+
+  Retorna os dados de todos os torneios da AFEB.
+
+  ### Parâmetros
+
+  > Nenhum
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "torneios": []object || null,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Torneios encontrados com sucesso!",
+    "torneios": [
+      {
+        "codTorn": 0,
+        "titulo": "Simultânea Oshiro vs. AFEB",
+        "descricao": "Torneio de toda a AFEB contra o Oshiro jogando xadrez Oshiro.",
+        "comentarios": "Oshiro destruiu a todos.",
+        "dataInicio": "2024-01-01",
+        "dataFim": "2024-01-02",
+        "modo": "presencial",
+        "participantes": 10,
+        "placarFinal": "1º. Daniel Oshiro - 10/10\n2º. AFEB - 0/10"
+      }
+    ]
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>GET</code> <code>/api/torneios/${codTorn}</code> </summary>
+
+  ### Descrição
+
+  Retorna os dados de um torneio específico da AFEB.
+
+  ### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | codTorn   |  required | string      | Código de torneio a ser retornado.                               |
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "torneio": object || null,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Torneio encontrado com sucesso!",
+    "torneio": {
+      "codTorn": 0,
+      "titulo": "Simultânea Oshiro vs. AFEB",
+      "descricao": "Torneio de toda a AFEB contra o Oshiro jogando xadrez Oshiro.",
+      "comentarios": "Oshiro destruiu a todos.",
+      "dataInicio": "2024-01-01",
+      "dataFim": "2024-01-02",
+      "modo": "presencial",
+      "participantes": 10,
+      "placarFinal": "1º. Daniel Oshiro - 9/9\n2º. AFEB - 0/9"
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>POST</code> <code>/api/torneios</code> </summary>
+
+  ### Descrição
+
+  Registra um novo torneio.
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 201 | `CREATED` |
+  | 400 | `BAD REQUEST` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Request body
+  ```js
+  {
+    "titulo": string,
+    "descricao": string,
+    "comentarios": string || null,
+    "dataInicio": string,
+    "dataFim": string || null,
+    "modo": string,
+    "participantes": Number,
+    "placarFinal": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "titulo": "Simultânea Oshiro vs. AFEB",
+    "descricao": "Torneio de toda a AFEB contra o Oshiro jogando xadrez Oshiro.",
+    "comentarios": "Oshiro destruiu a todos.",
+    "dataInicio": "2024-01-01",
+    "dataFim": "2024-01-02",
+    "modo": "presencial",
+    "participantes": 10,
+    "placarFinal": "1º. Daniel Oshiro - 9/9\n2º. AFEB - 0/9"
+  }
+  ```
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Torneio criado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>PUT</code> <code>/api/torneios</code> </summary>
+
+  ### Descrição
+
+  Atualiza os dados de um torneio.
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Request body
+  ```js
+  {
+    "codTorn": Number,
+    "titulo": string,
+    "descricao": string,
+    "comentarios": string || null,
+    "dataInicio": string,
+    "dataFim": string || null,
+    "modo": string,
+    "participantes": Number,
+    "placarFinal": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "codTorn": 0,
+    "titulo": "Simultânea Oshiro vs. AFEB",
+    "descricao": "Torneio de toda a AFEB contra o Oshiro jogando xadrez Oshiro.",
+    "comentarios": "Oshiro destruiu a todos.",
+    "dataInicio": "2024-01-01",
+    "dataFim": "2024-01-02",
+    "modo": "presencial",
+    "participantes": 10,
+    "placarFinal": "1º. Daniel Oshiro - 9/9\n2º. AFEB - 0/9"
+  }
+  ```
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Torneio editado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>DELETE</code> <code>/api/torneios/${codTorn}</code> </summary>
+
+  ### Descrição
+
+  Exclui um torneio do sistema.
+
+  ### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | codTorn   |  required | string      | Código do torneio a ser excluído.                                |
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Torneio excluído com sucesso!"
+  }
+  ```
+</details>
+
+## /api/trofeus
+
+<details>
+  <summary> <code>GET</code> <code>/api/trofeus/jogador/${codJog}</code> </summary>
+
+  ### Descrição
+
+  Retorna todas as premiações pela associação de um jogador da AFEB.
+
+  ### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | codJog    |  required | string      | Código do jogador a ter os troféus retornados.                   |
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "trofeus": []object || null,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Troféus encontrados com sucesso!",
+    "trofeus": [
+      {
+        "codTrof": 1,
+        "codJog": 1,
+        "codTorn": 1,
+        "torneio": "1º Campeonato Mundial da Biblioteca AFEB",
+        "posicao": 1
+      },
+      {
+        "codTrof": 4,
+        "codJog": 1,
+        "codTorn": 2,
+        "torneio": "1º Torneio Suíço de Blitz AFEB",
+        "posicao": 1
+      }
+    ]
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>GET</code> <code>/api/trofeus/${codTrof}</code> </summary>
+
+  ### Descrição
+
+  Retorna os dados de uma premiação a partir de seu código.
+
+  ### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | codTrof   |  required | string      | Código de troféu a ser retornado.                                |
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "trofeu": object || null,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Troféu encontrado com sucesso!",
+    "trofeu": {
+      "codTrof": 1,
+      "codJog": 1,
+      "codTorn": 1,
+      "torneio": "1º Campeonato Mundial da Biblioteca AFEB",
+      "posicao": 1
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>POST</code> <code>/api/trofeus</code> </summary>
+
+  ### Descrição
+
+  Registra uma nova premiação.
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 201 | `CREATED` |
+  | 400 | `BAD REQUEST` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Request body
+  ```js
+  {
+    "codJog": Number,
+    "codTorn": Number,
+    "posicao": Number
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "codJog": 1,
+    "codTorn": 12,
+    "posicao": 1
+  }
+  ```
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Troféu registrado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>PUT</code> <code>/api/trofeus</code> </summary>
+
+  ### Descrição
+
+  Atualiza os dados de uma premiação.
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Request body
+  ```js
+  {
+    "codTrof": Number,
+    "codJog": Number,
+    "codTorn": Number,
+    "posicao": Number
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "codTrof": 5,
+    "codJog": 1,
+    "codTorn": 12,
+    "posicao": 1
+  }
+  ```
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Troféu atualizado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>DELETE</code> <code>/api/trofeus/${codTrof}</code> </summary>
+
+  ### Descrição
+
+  Exclui uma premiação do sistema.
+
+  ### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | codTrof   |  required | string      | Código do troféu a ser excluído.                                 |
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Troféu excluído com sucesso!"
+  }
+  ```
+</details>
+
+## /api/usuarios
+
+> Em Breve

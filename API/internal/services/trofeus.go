@@ -18,6 +18,12 @@ func MostrarTrofeusJogador(c *gin.Context) {
 		return
 	}
 
+	if !models.JogadorExiste(codJog) {
+		c.IndentedJSON(http.StatusNotFound,
+			gin.H{"error": "Jogador não encontrado."})
+		return
+	}
+
 	var trofeus models.Trofeus
 	statusCode, msgErro := trofeus.GetTrofeusJogador(codJog)
 	if statusCode != http.StatusOK {
