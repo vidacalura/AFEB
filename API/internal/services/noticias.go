@@ -60,7 +60,10 @@ func CriarNoticia(c *gin.Context) {
 		return
 	}
 
-	// TODO: Validar se CodAutor (Usuario) existe
+	if !models.UsuarioExiste(noticia.CodAutor) {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "Autor não existe."})
+		return
+	}
 
 	statusCode, msgErro := noticia.CriarNoticia()
 	if statusCode != http.StatusCreated {
@@ -91,6 +94,11 @@ func EditarNoticia(c *gin.Context) {
 	if noticia.Noticia == "" {
 		c.IndentedJSON(http.StatusBadRequest,
 			gin.H{"error": "Corpo da notícia não pode estar vazio."})
+		return
+	}
+
+	if !models.UsuarioExiste(noticia.CodAutor) {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"error": "Autor não existe."})
 		return
 	}
 

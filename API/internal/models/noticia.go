@@ -8,7 +8,8 @@ import (
 
 type Noticia struct {
 	CodNotc        int    `json:"codNotc"`
-	CodAutor       string `json:"codAutor"`
+	CodAutor       []byte `json:"codAutor"`
+	Autor          string `json:"autor"`
 	Titulo         string `json:"titulo"`
 	Noticia        string `json:"noticia"`
 	DataPublicacao string `json:"dataPublicacao"`
@@ -39,8 +40,13 @@ func (n Noticia) IsValid() (bool, string) {
 
 // Retorna um feed com as 6 últimas notícias
 func (f *Feed) GetFeed() (int, string) {
-	selectFeed := "SELECT * FROM Noticias ORDER BY data_publicacao DESC LIMIT 6;"
-	// TODO: Retornar também nome do autor
+	selectFeed := `
+		SELECT Noticias.*, Usuarios.username
+		FROM Noticias
+		INNER JOIN Usuarios
+		ON Noticias.cod_autor = Usuarios.cod_usu
+		ORDER BY data_publicacao DESC LIMIT 6;`
+
 	rows, err := E.DB.Query(selectFeed)
 	if err != nil {
 		log.Println(err)
@@ -51,7 +57,7 @@ func (f *Feed) GetFeed() (int, string) {
 	for rows.Next() {
 		var n Noticia
 		err := rows.Scan(&n.CodNotc, &n.CodAutor, &n.Titulo, &n.Noticia,
-			&n.DataPublicacao)
+			&n.DataPublicacao, &n.Autor)
 		if err != nil {
 			log.Println(err)
 			return http.StatusInternalServerError,
@@ -74,12 +80,17 @@ func (f *Feed) GetFeed() (int, string) {
 
 // Recebe uma notícia especificada pelo seu código
 func (n *Noticia) GetNoticia(codNotc string) (int, string) {
-	selectNotc := "SELECT * FROM Noticias WHERE cod_notc = ?;"
-	// TODO: Retornar também nome do autor
+	selectNotc := `
+		SELECT Noticias.*, Usuarios.username
+		FROM Noticias
+		INNER JOIN Usuarios
+		ON Noticias.cod_autor = Usuarios.cod_usu
+		WHERE cod_notc = ?;`
+
 	row := E.DB.QueryRow(selectNotc, codNotc)
 
 	err := row.Scan(&n.CodNotc, &n.CodAutor, &n.Titulo, &n.Noticia,
-		&n.DataPublicacao)
+		&n.DataPublicacao, &n.Autor)
 	if err != nil {
 		log.Println(err)
 		return http.StatusNotFound, "Notícia não encontrada."

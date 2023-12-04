@@ -62,7 +62,14 @@ func NewRouter() *gin.Engine {
 		trof.DELETE("/:codTrof", services.ExcluirTrofeu)
 	}
 
-	//usu := r.Group("/api/usuarios") {}
+	usu := r.Group("/api/usuarios")
+	{
+		usu.GET("/", services.MostrarTodosUsuarios)
+		usu.GET("/:username", services.MostrarUsuario)
+		usu.POST("/", services.CriarUsuario)
+		usu.PUT("/", services.EditarUsuario)
+		usu.DELETE("/:username", services.ExcluirUsuario)
+	}
 
 	return r
 }

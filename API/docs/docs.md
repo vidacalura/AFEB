@@ -1028,4 +1028,230 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
 
 ## /api/usuarios
 
-> Em Breve
+<details>
+  <summary> <code>GET</code> <code>/api/usuarios</code> </summary>
+
+  ### Descrição
+
+  Retorna todos os usuários com acesso ao sistema da AFEB.
+
+  ### Parâmetros
+
+  > Nenhum
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "usuarios": []object || null,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Usuários encontrados com sucesso!",
+    "usuarios": [
+      {
+        "codUsu": "A2rToPKHJe9B5PIOUYKgXQ==",
+        "username": "Cléber",
+        "senha": "",
+        "adm": true,
+        "dataReg": "2024-01-02"
+      }
+    ]
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>GET</code> <code>/api/usuarios/${username}</code> </summary>
+
+  ### Descrição
+
+  Retorna um usuário a partir de seu username.
+
+  ### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | username  |  required | string      | Username de usuário a ser retornado.                             |
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "usuario": object || null,
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Usuário encontrado com sucesso!",
+    "usuario": {
+      "codUsu": "A2rToPKHJe9B5PIOUYKgXQ==",
+      "username": "Cléber",
+      "senha": "",
+      "adm": true,
+      "dataReg": "2024-01-02"
+    }
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>POST</code> <code>/api/usuarios</code> </summary>
+
+  ### Descrição
+
+  Cria um novo usuário.
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 201 | `CREATED` |
+  | 400 | `BAD REQUEST` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Request body
+  ```js
+  {
+    "username": string,
+    "senha": string,
+    "adm": boolean
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "username": "Cléber",
+    "senha": "senhaForte",
+    "adm": true
+  }
+  ```
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Usuário cadastrado com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>PUT</code> <code>/api/usuarios</code> </summary>
+
+  ### Descrição
+
+  Atualiza os dados de um usuário.
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Request body
+  ```js
+  {
+    "codUsu": string,
+    "username": string,
+    "senha": string,
+    "adm": boolean
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "codUsu": "A2rToPKHJe9B5PIOUYKgXQ==",
+    "username": "Cléber",
+    "senha": "senhaForte",
+    "adm": true
+  }
+  ```
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Usuário atualizada com sucesso!"
+  }
+  ```
+</details>
+
+<details>
+  <summary> <code>DELETE</code> <code>/api/usuarios/${username}</code> </summary>
+
+  ### Descrição
+
+  Exclui um usuário do sistema.
+
+  ### Parâmetros
+
+  | param.    |  tipo     | data type   | desc.                                                            |
+  |-----------|-----------|-------------|------------------------------------------------------------------|
+  | username  |  required | string      | Username do usuário a ser excluído.                              |
+
+  ### Status codes
+
+  | Status Code | Description |
+  | :--- | :--- |
+  | 200 | `OK` |
+  | 400 | `BAD REQUEST` |
+  | 404 | `NOT FOUND` |
+  | 500 | `INTERNAL SERVER ERROR` |
+
+  ### Response
+  ```js
+  {
+    "message": string || null,
+    "error": string || null
+  }
+  ```
+
+  Exemplo:
+  ```js
+  {
+    "message": "Usuário excluído com sucesso!"
+  }
+  ```
+</details>
