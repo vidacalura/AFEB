@@ -40,17 +40,36 @@
                     <img src="imgs/perfil.png" alt="Peça de cavalo do xadrez" id="jogador-template-img">
                 </div>
 
-                <div id="dados-pessoais-container">
-                    <h2 id="username-perfil-jogador" class="text-lg md:text-2xl">
-                        Nome do jogador
-                    </h2>
+                <div class="md:flex justify-between">
+                    <div id="dados-pessoais-container">
+                        <h2 id="username-perfil-jogador" class="text-lg md:text-2xl">
+                            Nome do jogador
+                        </h2>
 
-                    <p id="apelido-perfil-jogador" class="text-gray-800 font-light text-lg md:text-2xl">
-                        (Apelido)
-                    </p>
+                        <p id="apelido-perfil-jogador" class="text-gray-800 font-light text-lg md:text-2xl">
+                            (Apelido)
+                        </p>
 
-                    <div id="titulo-perfil-jogador-container">
-                        <h3 id="titulo-jogador" class="md:pt-0 pt-1">  </h3>
+                        <div id="titulo-perfil-jogador-container">
+                            <h3 id="titulo-jogador" class="md:pt-0 pt-1">  </h3>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center pt-24 text-lg font-bold gap-6 pr-[10vw]">
+                        <div class="score-jogador vitoria-container">
+                            <p> Vitórias </p>
+                            <p id="vitorias-jogador"> 0 </p>
+                        </div>
+
+                        <div class="score-jogador derrota-container">
+                            <p> Derrotas </p>
+                            <p id="derrotas-jogador"> 0 </p>
+                        </div>
+
+                        <div class="score-jogador empate-container">
+                            <p> Empates </p>
+                            <p id="empates-jogador"> 0 </p>
+                        </div>
                     </div>
                 </div>
 

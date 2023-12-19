@@ -104,12 +104,26 @@ body {
     @apply pr-4 md:pr-8 xl:pr-16;
 }
 
-#tabela-ranking {
+#tabela-ranking,
+#tabela-torneio {
     @apply border rounded-xl;
 }
 
 .ranking-jogador-rating-div {
     @apply flex pr-6;
+}
+
+.score-jogador {
+    @apply text-center border-l-2 pl-4;
+}
+.vitoria-container {
+    @apply border-green-400;
+}
+.derrota-container {
+    @apply border-red-400;
+}
+.empate-container {
+    @apply border-yellow-400;
 }
 
 /* Estilo para barra de rolagem */

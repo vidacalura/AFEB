@@ -44,6 +44,7 @@ async function fetchPerfil(codJog) {
  * @param {object} jogador - Jogador a ser mostrado.
  */
 function mostrarJogador(jogador) {
+    console.log(jogador)
     document.getElementById("username-perfil-jogador").textContent = jogador.nome;
     document.getElementById("informacoes-jogador").textContent = jogador.info;
     
@@ -59,6 +60,10 @@ function mostrarJogador(jogador) {
         const tituloContainer = document.getElementById("titulo-perfil-jogador-container");
         tituloContainer.style.display = "none";
     }
+
+    document.getElementById("vitorias-jogador").textContent = jogador.vitorias;
+    document.getElementById("derrotas-jogador").textContent = jogador.derrotas;
+    document.getElementById("empates-jogador").textContent = jogador.empates;
 
     document.getElementById("rating-rapido-p").textContent = (
         jogador.eloRapid != null
