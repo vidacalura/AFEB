@@ -20,54 +20,56 @@ func NewRouter() *gin.Engine {
 
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"PUT", "GET", "POST", "DELETE"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
 		AllowHeaders:     []string{"*"},
 		AllowCredentials: true,
 	}))
 
-	jog := r.Group("/api/jogadores")
+	v1 := r.Group("/api")
+
+	jog := v1.Group("/jogadores")
 	{
 		jog.GET("/ranking", services.MostrarRankingJogadores)
 		jog.GET("/:codJog", services.MostrarJogador)
-		jog.POST("/", services.CadastrarJogador)
-		jog.PUT("/", services.EditarCadastroJogador)
+		jog.POST("", services.CadastrarJogador)
+		jog.PUT("", services.EditarCadastroJogador)
 		jog.DELETE("/:codJog", services.ExcluirJogador)
 	}
 
-	notc := r.Group("/api/noticias")
+	notc := v1.Group("/noticias")
 	{
-		notc.GET("/", services.MostrarTodasNoticias)
+		notc.GET("", services.MostrarTodasNoticias)
 		notc.GET("/feed", services.MostrarFeedNoticias)
 		notc.GET("/:codNotc", services.MostrarNoticia)
-		notc.POST("/", services.CriarNoticia)
-		notc.PUT("/", services.EditarNoticia)
+		notc.POST("", services.CriarNoticia)
+		notc.PUT("", services.EditarNoticia)
 		notc.DELETE("/:codNotc", services.ExcluirNoticia)
 	}
 
-	torn := r.Group("/api/torneios")
+	torn := v1.Group("/torneios")
 	{
-		torn.GET("/", services.MostrarTodosTorneios)
+		torn.GET("", services.MostrarTodosTorneios)
 		torn.GET("/:codTorn", services.MostrarTorneio)
-		torn.POST("/", services.CriarTorneio)
-		torn.PUT("/", services.EditarTorneio)
+		torn.POST("", services.CriarTorneio)
+		torn.PUT("", services.EditarTorneio)
 		torn.DELETE("/:codTorn", services.ExcluirTorneio)
 	}
 
-	trof := r.Group("/api/trofeus")
+	trof := v1.Group("/trofeus")
 	{
 		trof.GET("/jogador/:codJog", services.MostrarTrofeusJogador)
 		trof.GET("/:codTrof", services.MostrarDadosTrofeu)
-		trof.POST("/", services.CriarTrofeu)
-		trof.PUT("/", services.EditarTrofeu)
+		trof.POST("", services.CriarTrofeu)
+		trof.PUT("", services.EditarTrofeu)
 		trof.DELETE("/:codTrof", services.ExcluirTrofeu)
 	}
 
-	usu := r.Group("/api/usuarios")
+	usu := v1.Group("/usuarios")
 	{
-		usu.GET("/", services.MostrarTodosUsuarios)
+		usu.GET("", services.MostrarTodosUsuarios)
 		usu.GET("/:username", services.MostrarUsuario)
-		usu.POST("/", services.CriarUsuario)
-		usu.PUT("/", services.EditarUsuario)
+		usu.POST("", services.CriarUsuario)
+		usu.PUT("", services.EditarUsuario)
 		usu.DELETE("/:username", services.ExcluirUsuario)
 	}
 

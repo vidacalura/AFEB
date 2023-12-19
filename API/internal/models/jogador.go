@@ -15,6 +15,10 @@ type Jogador struct {
 	Info           null.String `json:"info"`
 	EloRapid       null.Int    `json:"eloRapid"`
 	EloBlitz       null.Int    `json:"eloBlitz"`
+	Jogos          int         `json:"jogos"`
+	Vitorias       int         `json:"vitorias"`
+	Derrotas       int         `json:"derrotas"`
+	Empates        int         `json:"empates"`
 	DataNascimento string      `json:"dataNascimento"`
 	Trofeus        Trofeus     `json:"trofeus"`
 }
@@ -64,6 +68,22 @@ func (j Jogador) IsValid() (bool, string) {
 		}
 	}
 
+	if j.Jogos < 0 || j.Jogos > 99999999 {
+		return false, "Jogos deve estar entre 0 e 99999999"
+	}
+
+	if j.Vitorias < 0 || j.Vitorias > 99999999 {
+		return false, "Vitórias deve estar entre 0 e 99999999"
+	}
+
+	if j.Derrotas < 0 || j.Derrotas > 99999999 {
+		return false, "Derrotas deve estar entre 0 e 99999999"
+	}
+
+	if j.Empates < 0 || j.Empates > 99999999 {
+		return false, "Empates deve estar entre 0 e 99999999"
+	}
+
 	if len(j.DataNascimento) != 10 {
 		return false, "Data de nascimento deve estar no padrão: YYYY-MM-DD."
 	}
@@ -73,7 +93,10 @@ func (j Jogador) IsValid() (bool, string) {
 
 // Retorna o Top 10 jogadores da AFEB
 func (r *RankingJogadores) GetTop10AFEB() (int, string) {
-	selectRanking := "SELECT * FROM Jogadores ORDER BY elo_rapido DESC LIMIT 10;"
+	selectRanking :=
+		`SELECT cod_jog, nome, apelido, titulo_AFEB, info, elo_rapido,
+		elo_blitz, jogos, vitorias, derrotas, empates, data_nascimento
+		FROM Jogadores ORDER BY elo_rapido DESC LIMIT 10;`
 
 	rows, err := E.DB.Query(selectRanking)
 	if err != nil {
@@ -85,7 +108,8 @@ func (r *RankingJogadores) GetTop10AFEB() (int, string) {
 	for rows.Next() {
 		var j Jogador
 		err := rows.Scan(&j.CodJog, &j.Nome, &j.Apelido, &j.TituloAFEB, &j.Info,
-			&j.EloRapid, &j.EloBlitz, &j.DataNascimento)
+			&j.EloRapid, &j.EloBlitz, &j.Jogos, &j.Vitorias, &j.Derrotas,
+			&j.Empates, &j.DataNascimento)
 		if err != nil {
 			log.Println(err)
 			return http.StatusInternalServerError,
@@ -107,11 +131,15 @@ func (r *RankingJogadores) GetTop10AFEB() (int, string) {
 
 // Encontra dados de um jogador
 func (j *Jogador) GetJogador(codJog string) (int, string) {
-	selectJog := "SELECT * FROM Jogadores WHERE cod_jog = ?;"
+	selectJog := `
+		SELECT cod_jog, nome, apelido, titulo_AFEB, info, elo_rapido,
+		elo_blitz, jogos, vitorias, derrotas, empates, data_nascimento
+		FROM Jogadores WHERE cod_jog = ?;`
 	row := E.DB.QueryRow(selectJog, codJog)
 
 	err := row.Scan(&j.CodJog, &j.Nome, &j.Apelido, &j.TituloAFEB, &j.Info,
-		&j.EloRapid, &j.EloBlitz, &j.DataNascimento)
+		&j.EloRapid, &j.EloBlitz, &j.Jogos, &j.Vitorias, &j.Derrotas,
+		&j.Empates, &j.DataNascimento)
 	if err != nil {
 		log.Println(err)
 		return http.StatusNotFound, "Jogador não encontrado."
@@ -126,10 +154,12 @@ func (j *Jogador) GetJogador(codJog string) (int, string) {
 func (j Jogador) RegistrarJogador() (int, string) {
 	insert := `
 		INSERT INTO Jogadores (nome, apelido, titulo_AFEB, info, elo_rapido,
-		elo_blitz, data_nascimento) VALUES(?, ?, ?, ?, ?, ?, ?);`
+		elo_blitz, jogos, vitorias, derrotas, empates, data_nascimento) 
+		VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
 
 	_, err := E.DB.Exec(insert, j.Nome, j.Apelido, j.TituloAFEB, j.Info,
-		j.EloRapid, j.EloBlitz, j.DataNascimento)
+		j.EloRapid, j.EloBlitz, j.Jogos, j.Vitorias, j.Derrotas, j.Empates,
+		j.DataNascimento)
 	if err != nil {
 		log.Println(err)
 		return http.StatusInternalServerError,
@@ -144,10 +174,12 @@ func (j Jogador) RegistrarJogador() (int, string) {
 func (j Jogador) EditarJogador() (int, string) {
 	update := `
 		UPDATE Jogadores SET nome = ?, apelido = ?, titulo_AFEB = ?, info = ?,
-		elo_rapido = ?, elo_blitz = ?, data_nascimento = ? WHERE cod_jog = ?;`
+		elo_rapido = ?, elo_blitz = ?, jogos = ?, vitorias = ?, derrotas = ?,
+		empates = ?, data_nascimento = ? WHERE cod_jog = ?;`
 
 	_, err := E.DB.Exec(update, j.Nome, j.Apelido, j.TituloAFEB, j.Info,
-		j.EloRapid, j.EloBlitz, j.DataNascimento, j.CodJog)
+		j.EloRapid, j.EloBlitz, j.Jogos, j.Vitorias, j.Derrotas, j.Empates,
+		j.DataNascimento, j.CodJog)
 	if err != nil {
 		log.Println(err)
 		return http.StatusInternalServerError,
