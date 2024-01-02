@@ -5,6 +5,10 @@ alunos e ex-alunos do Colégio Bento Quirino que visam populiarizar o xadrez na
 escola e reunir novos e antigos amigos para torneios presenciais e online de 
 xadrez.
 
+Receba as últimas notícias da AFEB pelo nosso RSS feed: 
+<a href="https://afeb-xadrez.web.app/feeds/noticias.xml">
+https://afeb-xadrez.web.app/feeds/noticias.xml </a>
+
 ## Sobre o projeto
 
 Este repositório contém o website oficial da AFEB, contendo rankings, informações
