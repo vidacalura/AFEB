@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.7 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.0 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -32,9 +32,11 @@
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
 
-html {
+html,
+:host {
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -44,12 +46,14 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
   font-variation-settings: normal;
   /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
 }
 
 /*
@@ -602,6 +606,14 @@ video {
   width: 100%;
 }
 
+.w-\[22\%\] {
+  width: 22%;
+}
+
+.w-\[34\%\] {
+  width: 34%;
+}
+
 .w-screen {
   width: 100vw;
 }
@@ -636,11 +648,6 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.border-red-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(220 38 38 / var(--tw-border-opacity));
 }
 
 .bg-slate-800 {
@@ -709,6 +716,10 @@ video {
 
 .pt-24 {
   padding-top: 6rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
 }
 
 .pt-\[2vh\] {
@@ -958,6 +969,22 @@ body {
   padding: 2rem;
 }
 
+#informacoes-torneio-container {
+  margin-top: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
+  padding: 2rem;
+}
+
+#informacoes-torneio-container ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .rating-square {
   height: 12rem;
   width: 12rem;
@@ -1038,39 +1065,59 @@ body {
   }
 }
 
-.ranking-jogador-div {
+.ranking-jogador-div,
+.ranking-torneio-div {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   border-radius: 0.75rem;
   border-bottom-width: 1px;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
-  font-weight: 700;
 }
 
-.ranking-jogador-div:hover {
+.ranking-jogador-div:hover,
+.ranking-torneio-div:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {
-  .ranking-jogador-div {
-    padding-left: 5rem;
-    padding-right: 5rem;
+  .ranking-jogador-div,
+.ranking-torneio-div {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
     font-size: 1rem;
     line-height: 1.5rem;
   }
 }
 
 @media (min-width: 1536px) {
-  .ranking-jogador-div {
+  .ranking-jogador-div,
+.ranking-torneio-div {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
+}
+
+.ranking-jogador-div,
+.ranking-torneio-div {
+  align-items: center;
+}
+
+.ranking-torneio-div-title {
+  width: 34%;
+  font-weight: 700;
+}
+
+.ranking-torneio-div-div {
+  width: 22%;
+  text-align: center;
+  text-transform: capitalize;
 }
 
 #legenda-tabela div,
@@ -1078,6 +1125,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -1133,6 +1181,37 @@ body {
 .empate-container {
   --tw-border-opacity: 1;
   border-color: rgb(250 204 21 / var(--tw-border-opacity));
+}
+
+#titulo-torneio {
+  padding-top: 3rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  #titulo-torneio {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  #titulo-torneio {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+#descricao-torneio {
+  padding-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  #descricao-torneio {
+    padding-right: 36%;
+  }
 }
 
 /* Estilo para barra de rolagem */

@@ -1,20 +1,28 @@
-const API = "http://127.0.0.1:4000/api";
+const API = "https://afeb-api.onrender.com/api";
 
-fetchTorneio()
-.then((torn) => {
-    mostrarTorneio(torn);
+const codTorn = new URL(window.location.href).searchParams.get("torneio");
+
+fetchTorneio(codTorn)
+.then((torneio) => {
+    if (!torneio) {
+        mostrarMensagemErro("Dados de torneio não cadastrados.");
+        return;
+    }
+
+    mostrarTorneio(torneio);
 })
 .catch((err) => {
     mostrarMensagemErro(err);
 });
 
 /**
- * Retorna todos os torneios da AFEB.
- * @returns {Array} - Torneios da AFEB.
+ * Retorna os dados de um torneio pela API.
+ * @param {string} codTorn - Código do torneio a ser retornado.
+ * @returns {object} - Dados do torneio da AFEB.
  * @throws - Retorna um erro da API.
  */
-async function fetchTorneio() {
-    return await fetch(API + "/torneios")
+async function fetchTorneio(codTorn) {
+    return await fetch(API + `/torneios/${codTorn}`)
     .then((res) => res.json())
     .then((res) => {
         if (res == null)
@@ -23,7 +31,7 @@ async function fetchTorneio() {
         if (res.error) 
             return new Error(res.error);
 
-        return res.torneios;
+        return res.torneio;
     })
     .catch((err) => {
         console.error(err);
@@ -32,37 +40,29 @@ async function fetchTorneio() {
 }
 
 /**
- * Coloca os dados de torneios na tabela.
- * @param {Array} torneios - Torneios da AFEB.
+ * Mostra os dados do torneio ao usuário.
+ * @param {object} torneio - Dados do torneio a ser mostrado.
  */
-function mostrarTorneio(torneios) {
-    if (!torneios)
-        return;
+function mostrarTorneio(torneio) {
+    document.getElementById("titulo-torneio").textContent = torneio.titulo;
+    document.getElementById("descricao-torneio").textContent = torneio.descricao;
 
-    const torneioTabela = document.getElementById("tabela-torneio");
-
-    for (const t of torneios) {
-        const containerTorneio = document.createElement("a");
-        //containerTorneio.classList.add("ranking-jogador-div");
-        containerTorneio.href = `torneio.html?torneio=${t.codTorn}`;
-
-        containerTorneio.innerHTML = `
-            <div>
-                <p class="text-sm"> ${t.titulo} </p>
-                <p> ${t.modo} </p>
-                <p> ${t.dataInicio} </p>
-                <p> ${(!t.dataFim ? "" : t.dataFim)} </p>
-            </div>
-        `;
-
-        torneioTabela.appendChild(containerTorneio);
+    if (torneio.comentarios) {
+        document.getElementById("comentarios-torneio").innerHTML = 
+            torneio.comentarios.replaceAll("\n", "<br />");
     }
+
+    document.getElementById("torneio-participantes").textContent = torneio.participantes;
+    document.getElementById("torneio-resultados").innerHTML =
+        torneio.placarFinal.replaceAll("\n", "<br />");
 }
 
 /**
- * Mostra uma mensagem de erro ao usuário.
- * @param {string} erro - Mensagem de erro.
+ * Formata uma data em YYYY-MM-DD para DD/MM/YYYY.
+ * @param {string} data - Data a ser formatada. Ex: 1970-01-01.
+ * @returns {string} - Data formatada em DD/MM/YYYY.
  */
-function mostrarMensagemErro(erro) {
-    alert(erro);
+function formatarData(data) {
+    const [ano, mes, dia] = data.split("-");
+    return `${dia}/${mes}/${ano}`;
 }

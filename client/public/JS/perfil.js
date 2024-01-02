@@ -44,7 +44,6 @@ async function fetchPerfil(codJog) {
  * @param {object} jogador - Jogador a ser mostrado.
  */
 function mostrarJogador(jogador) {
-    console.log(jogador)
     document.getElementById("username-perfil-jogador").textContent = jogador.nome;
     document.getElementById("informacoes-jogador").textContent = jogador.info;
     
