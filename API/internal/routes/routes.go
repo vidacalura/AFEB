@@ -2,7 +2,6 @@
 package routes
 
 import (
-	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/vidacalura/AFEB/internal/models"
 	"github.com/vidacalura/AFEB/internal/services"
@@ -18,12 +17,7 @@ func NewRouter() *gin.Engine {
 
 	r := gin.Default()
 
-	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
-		AllowHeaders:     []string{"*"},
-		AllowCredentials: true,
-	}))
+	r.Use(CORSMiddleFunc())
 
 	v1 := r.Group("/api")
 
@@ -74,4 +68,20 @@ func NewRouter() *gin.Engine {
 	}
 
 	return r
+}
+
+func CORSMiddleFunc() gin.HandlerFunc {
+	return func(c *gin.Context)	{
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+        c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+        c.Writer.Header().Set("Access-Control-Allow-Headers", "*")
+        c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
+
+        if c.Request.Method == "OPTIONS" {
+            c.AbortWithStatus(204)
+            return
+        }
+
+        c.Next()
+	}
 }

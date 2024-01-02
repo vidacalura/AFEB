@@ -65,7 +65,7 @@ func (t Torneio) IsValid() (bool, string) {
 
 // Retorna todos torneios
 func (t *Torneios) GetTorneios() (int, string) {
-	selectTorn := "SELECT * FROM Torneios;"
+	selectTorn := "SELECT * FROM Torneios ORDER BY data_inicio DESC;"
 	rows, err := E.DB.Query(selectTorn)
 	if err != nil {
 		log.Println(err)
