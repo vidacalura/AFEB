@@ -49,7 +49,7 @@ function mostrarRanking(ranking) {
         containerJogadorRanking.href = `perfil.html?codJog=${j.codJog}`;
 
         containerJogadorRanking.innerHTML = `
-            <div>
+            <div class="font-bold">
                 <p> ${i} </p>
                 <p> ${j.nome} </p>
             </div>

@@ -90,13 +90,17 @@ function mostrarPremiacoes(trofeus) {
     const premiacoesContainer = document.getElementById("premiacoes-container");
 
     for (const t of trofeus) {
+        const trofeuContainer = document.createElement("a");
+        trofeuContainer.href = `torneio.html?torneio=${t.codTorn}`;
+
         const trofeuDiv = document.createElement("div");
         trofeuDiv.classList.add("trofeu-div");
 
         trofeuDiv.innerHTML = `
             <p class="font-bold"> ${t.torneio} - ${t.posicao}º Lugar </p>`;
 
-        premiacoesContainer.appendChild(trofeuDiv);
+        trofeuContainer.appendChild(trofeuDiv);
+        premiacoesContainer.appendChild(trofeuContainer);
     }
 }
 

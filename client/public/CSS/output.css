@@ -582,6 +582,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .mt-\[20vh\] {
   margin-top: 20vh;
 }
@@ -1109,15 +1113,70 @@ body {
   align-items: center;
 }
 
+.ranking-torneio-div {
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .ranking-torneio-div {
+    gap: 0px;
+  }
+}
+
 .ranking-torneio-div-title {
-  width: 34%;
+  width: 100%;
   font-weight: 700;
 }
 
+@media (min-width: 768px) {
+  .ranking-torneio-div-title {
+    width: 34%;
+  }
+}
+
 .ranking-torneio-div-div {
+  display: none;
   width: 22%;
   text-align: center;
   text-transform: capitalize;
+}
+
+@media (min-width: 768px) {
+  .ranking-torneio-div-div {
+    display: block;
+  }
+}
+
+#legenda-tabela-torneios {
+  margin-top: 4rem;
+  display: none;
+  justify-content: space-between;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
+@media (min-width: 768px) {
+  #legenda-tabela-torneios {
+    display: flex;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
+#legenda-tabela div {
+  font-weight: 700;
 }
 
 #legenda-tabela div,
@@ -1125,7 +1184,6 @@ body {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -1160,6 +1218,7 @@ body {
 .ranking-jogador-rating-div {
   display: flex;
   padding-right: 1.5rem;
+  font-weight: 400;
 }
 
 .score-jogador {
