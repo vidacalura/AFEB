@@ -31,7 +31,7 @@ func Login(c *gin.Context) {
 	if !valido {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{
 			"error": "Nome de usuário ou senha inválidos.",
-		})	
+		})
 		return
 	}
 
@@ -51,7 +51,7 @@ func Login(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK, gin.H{
 		"username": user.Username,
-		"token": tokenString,
+		"token":    tokenString,
 	})
 }
 
@@ -68,10 +68,16 @@ func ValidarSessaoUsuario(c *gin.Context) {
 		return
 	}
 
-	token := strings.ReplaceAll(c.Request.Header["Authorization"][0], "Bearer ",
-		"")
-	_, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
-		return []byte(""), nil
+	key, err := base64.StdEncoding.DecodeString(os.Getenv("JWT_SECRET"))
+	if err != nil {
+		log.Println(err)
+		c.AbortWithStatus(500)
+		return
+	}
+
+	token := strings.ReplaceAll(c.Request.Header["Authorization"][0], "Bearer ", "")
+	_, err = jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
+		return key, nil
 	})
 	if err != nil {
 		c.AbortWithStatus(400)
@@ -85,9 +91,9 @@ func ValidarSessaoUsuario(c *gin.Context) {
 func CriarJWT(codUsu []byte, username string, adm bool) string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256,
 		jwt.MapClaims{
-			"codUsu": codUsu,
-			"username": username,
-			"adm": adm,
+			"codUsu":     codUsu,
+			"username":   username,
+			"adm":        adm,
 			"expireTime": time.Now().Add(24 * time.Hour),
 		})
 
