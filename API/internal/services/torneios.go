@@ -43,7 +43,7 @@ func MostrarTorneio(c *gin.Context) {
 
 func CriarTorneio(c *gin.Context) {
 	var torneio models.Torneio
-	if err := c.BindJSON(torneio); err != nil {
+	if err := c.BindJSON(&torneio); err != nil {
 		log.Println(err)
 		c.IndentedJSON(http.StatusBadRequest,
 			gin.H{"error": "Dados de torneio inválidos."})
@@ -69,7 +69,7 @@ func CriarTorneio(c *gin.Context) {
 
 func EditarTorneio(c *gin.Context) {
 	var torneio models.Torneio
-	if err := c.BindJSON(torneio); err != nil {
+	if err := c.BindJSON(&torneio); err != nil {
 		log.Println(err)
 		c.IndentedJSON(http.StatusBadRequest,
 			gin.H{"error": "Dados de torneio inválidos."})
@@ -87,7 +87,7 @@ func EditarTorneio(c *gin.Context) {
 			gin.H{"error": "Torneio a ser editado não encontrado."})
 	}
 
-	statusCode, msgErro := torneio.RegistrarTorneio()
+	statusCode, msgErro := torneio.EditarTorneio()
 	if statusCode != http.StatusOK {
 		c.IndentedJSON(statusCode, gin.H{"error": msgErro})
 		return

@@ -148,6 +148,23 @@ func (u Usuario) ExcluirUsuario() (int, string) {
 	return http.StatusOK, ""
 }
 
+// Valida dados de login de usuário
+func (u Usuario) ValidarLogin() bool {
+	selectUsu := `
+		SELECT cod_usu FROM Usuarios
+		WHERE BINARY username = ? AND BINARY senha = ?;`
+
+	row := E.DB.QueryRow(selectUsu, u.Username, u.Senha)
+	
+	var codUsu []byte
+	if err := row.Scan(&codUsu); err != nil {
+		log.Println(err)
+		return false
+	}
+	
+	return true
+}
+
 // Valida se usuário existe
 func UsuarioExiste(codUsu []byte) bool {
 	selectUsu := "SELECT username FROM Usuarios WHERE cod_usu = ?;"

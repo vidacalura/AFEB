@@ -138,7 +138,7 @@ func (t Torneio) EditarTorneio() (int, string) {
 	update := `
 		UPDATE Torneios SET titulo = ?, descricao = ?, comentarios = ?,
 		data_inicio = ?, data_fim = ?, modo = ?, participantes = ?,
-		placar_final = ?;`
+		placar_final = ? WHERE cod_torn = ?;`
 
 	_, err := E.DB.Exec(update, t.Titulo, t.Descricao, t.Comentarios,
 		t.DataInicio, t.DataFim, t.Modo, t.Participantes, t.PlacarFinal,

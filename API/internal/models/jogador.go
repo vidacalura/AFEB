@@ -91,12 +91,12 @@ func (j Jogador) IsValid() (bool, string) {
 	return true, ""
 }
 
-// Retorna o Top 10 jogadores da AFEB
+// Retorna os jogadores da AFEB em ordem de rating rápido.
 func (r *RankingJogadores) GetTop10AFEB() (int, string) {
 	selectRanking :=
 		`SELECT cod_jog, nome, apelido, titulo_AFEB, info, elo_rapido,
 		elo_blitz, jogos, vitorias, derrotas, empates, data_nascimento
-		FROM Jogadores ORDER BY elo_rapido DESC LIMIT 10;`
+		FROM Jogadores ORDER BY elo_rapido DESC;`
 
 	rows, err := E.DB.Query(selectRanking)
 	if err != nil {
