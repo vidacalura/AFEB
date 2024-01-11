@@ -78,7 +78,7 @@ func NewRouter() *gin.Engine {
 
 func CORSMiddleFunc() gin.HandlerFunc {
 	return func(c *gin.Context)	{
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://127.0.0.1:5500")
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://127.0.0.1:5500, https://afeb-xadrez.web.app")
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
