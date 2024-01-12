@@ -21,7 +21,8 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
 
   ### Descrição
 
-  Retorna um ranking com o Top 10 jogadores mais bem rankeados da AFEB.
+  Retorna um ranking com todos os jogadores registrados na AFEB, em ordem
+  decrescente de rating rápido.
 
   ### Parâmetros
 
@@ -56,6 +57,10 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
         "info": "Fundador da AFEB.",
         "eloRapid": 3200,
         "eloBlitz": 3400,
+        "jogos": 405,
+        "vitorias": 300,
+        "derrotas": 100,
+        "empates": 5,
         "dataNascimento": "2005-09-02",
         "trofeus": null
       },
@@ -67,6 +72,10 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
         "info": "O bye",
         "eloRapid": 9999,
         "eloBlitz": 9999,
+        "jogos": 3000,
+        "vitorias": 3000,
+        "derrotas": 0,
+        "empates": 0,
         "dataNascimento": "0000-01-01",
         "trofeus": null
       }
@@ -116,6 +125,10 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
       "info": "O bye",
       "eloRapid": 9999,
       "eloBlitz": 9999,
+      "jogos": 405,
+      "vitorias": 300,
+      "derrotas": 100,
+      "empates": 5,
       "dataNascimento": "0000-01-01",
       "trofeus": [
         {
@@ -156,6 +169,9 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
     "info": string || null,
     "eloRapid": Number || null,
     "eloBlitz": Number || null,
+    "vitorias": Number,
+    "derrotas": Number,
+    "empates": Number,
     "dataNascimento": string
   }
   ```
@@ -169,6 +185,9 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
     "info": "O bye.",
     "eloRapid": 9999,
     "eloBlitz": 9999,
+    "vitorias": 3000,
+    "derrotas": 0,
+    "empates": 0,
     "dataNascimento": "1287-01-01"
   }
   ```
@@ -215,6 +234,9 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
     "info": string || null,
     "eloRapid": Number || null,
     "eloBlitz": Number || null,
+    "vitorias": Number,
+    "derrotas": Number,
+    "empates": Number,
     "dataNascimento": string
   }
   ```
@@ -229,6 +251,9 @@ Link da API: <a href="https://afeb-api.onrender.com/">https://afeb-api.onrender.
     "info": "O bye.",
     "eloRapid": 9999,
     "eloBlitz": 9999,
+    "vitorias": 3000,
+    "derrotas": 0,
+    "empates": 0,
     "dataNascimento": "1287-01-01"
   }
   ```

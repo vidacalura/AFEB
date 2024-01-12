@@ -26,7 +26,18 @@ func MostrarFeedNoticias(c *gin.Context) {
 }
 
 func MostrarTodasNoticias(c *gin.Context) {
-	// TODO
+	var feed models.Feed
+
+	statusCode, msgErro := feed.GetNoticias()
+	if statusCode != http.StatusOK {
+		c.IndentedJSON(statusCode, gin.H{"error": msgErro})
+		return
+	}
+
+	c.IndentedJSON(statusCode, gin.H{
+		"noticias": feed,
+		"message":  "Notícias encontradas com sucesso!",
+	})
 }
 
 func MostrarNoticia(c *gin.Context) {

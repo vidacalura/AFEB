@@ -78,6 +78,40 @@ func (f *Feed) GetFeed() (int, string) {
 	return http.StatusOK, ""
 }
 
+// Retorna o feed completo de notícias, com todas as notícias da AFEB.
+func (f *Feed) GetNoticias() (int, string) {
+	selectFeed := "SELECT * FROM Noticias ORDER BY data_publicacao DESC;"
+	rows, err := E.DB.Query(selectFeed)
+	if err != nil {
+		log.Println(err)
+		return http.StatusInternalServerError, 
+			"Erro ao receber notícias do banco de dados."
+	}
+	
+	defer rows.Close()
+
+	for rows.Next() {
+		var n Noticia
+		err := rows.Scan(&n.CodNotc, &n.CodAutor, &n.Titulo, &n.Noticia,
+			&n.DataPublicacao)
+		if err != nil {
+			log.Println(err)
+			return http.StatusInternalServerError,
+				"Erro ao receber notícias do banco de dados."
+		}
+
+		*f = append(*f, n)
+	}
+
+	if err := rows.Err(); err != nil {
+		log.Println(err)
+		return http.StatusInternalServerError,
+			"Erro ao conectar ao banco de dados."
+	}
+
+	return http.StatusOK, ""
+}
+
 // Recebe uma notícia especificada pelo seu código
 func (n *Noticia) GetNoticia(codNotc string) (int, string) {
 	selectNotc := `

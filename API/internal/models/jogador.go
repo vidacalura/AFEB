@@ -26,7 +26,7 @@ type Jogador struct {
 type RankingJogadores []Jogador
 
 // Valida uma instância de Jogador
-func (j Jogador) IsValid() (bool, string) {
+func (j *Jogador) IsValid() (bool, string) {
 	if j.CodJog < 0 || j.CodJog > 99999999 {
 		return false, "Código de jogador inválido."
 	}
@@ -66,6 +66,11 @@ func (j Jogador) IsValid() (bool, string) {
 		if j.EloBlitz.Int64 < 0 || j.EloBlitz.Int64 > 9999 {
 			return false, "Rating blitz deve estar entre 0 e 9999."
 		}
+	}
+	
+	if j.Jogos == 0 {
+		j.Jogos = j.Vitorias + j.Derrotas + 
+			j.Empates
 	}
 
 	if j.Jogos < 0 || j.Jogos > 99999999 {

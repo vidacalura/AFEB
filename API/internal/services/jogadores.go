@@ -46,7 +46,7 @@ func CadastrarJogador(c *gin.Context) {
 		c.IndentedJSON(http.StatusBadRequest,
 			gin.H{"error": "Dados de jogador inválidos."})
 		return
-	}
+	}	
 
 	valido, msgErro := novoJogador.IsValid()
 	if !valido {
