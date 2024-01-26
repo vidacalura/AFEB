@@ -67,9 +67,9 @@ func (j *Jogador) IsValid() (bool, string) {
 			return false, "Rating blitz deve estar entre 0 e 9999."
 		}
 	}
-	
+
 	if j.Jogos == 0 {
-		j.Jogos = j.Vitorias + j.Derrotas + 
+		j.Jogos = j.Vitorias + j.Derrotas +
 			j.Empates
 	}
 
@@ -101,7 +101,7 @@ func (r *RankingJogadores) GetTop10AFEB() (int, string) {
 	selectRanking :=
 		`SELECT cod_jog, nome, apelido, titulo_AFEB, info, elo_rapido,
 		elo_blitz, jogos, vitorias, derrotas, empates, data_nascimento
-		FROM Jogadores ORDER BY elo_rapido DESC;`
+		FROM Jogadores ORDER BY elo_rapido DESC, elo_blitz DESC;`
 
 	rows, err := E.DB.Query(selectRanking)
 	if err != nil {
